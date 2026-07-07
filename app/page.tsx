@@ -11,7 +11,7 @@ export default function Home() {
       <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950 text-white pt-16 pb-20">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 text-white/90 text-xs font-medium tracking-[1.5px] px-4 py-1 rounded-full mb-6">
-            AN IDEA FROM 2001 • REBUILT FOR 2027
+            AN IDEA FROM 2001 • REBUILT FOR 2026 — 25 YEARS ON
           </div>
           
           <h1 className="text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-6">
@@ -47,8 +47,8 @@ export default function Home() {
       {/* Trust / Story Bar */}
       <div className="border-b bg-white py-5">
         <div className="max-w-5xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-slate-600">
-          <div className="flex items-center gap-2"><Award className="w-4 h-4 text-primary-600" /> An idea from 2001, rebuilt for 2027</div>
-          <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary-600" /> Mentoring from qualified actuaries across Africa</div>
+          <div className="flex items-center gap-2"><Award className="w-4 h-4 text-primary-600" /> An idea from 2001, rebuilt for 2026</div>
+          <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary-600" /> Mentoring from qualified actuaries across Africa and beyond</div>
           <div className="flex items-center gap-2"><Users className="w-4 h-4 text-primary-600" /> In service of 3E Foundation&apos;s mission</div>
         </div>
       </div>

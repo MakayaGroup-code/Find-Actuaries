@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-slate-900 text-slate-400 py-12 mt-20">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-y-10 text-sm">
         <div>
-          <div className="flex items-center gap-2 mb-3">
+          <Link href="/" className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity">
             <svg viewBox="0 0 260 260" className="w-7 h-7" aria-hidden="true">
               <line x1="122" y1="120" x2="188" y2="65" stroke="#B8672A" strokeWidth="12" strokeLinecap="round"/>
               <line x1="122" y1="120" x2="201" y2="124" stroke="#B8672A" strokeWidth="12" strokeLinecap="round"/>
@@ -21,7 +21,7 @@ export default function Footer() {
               <circle cx="122" cy="120" r="24" fill="#ffffff" stroke="#8FA0C4" strokeWidth="7"/>
             </svg>
             <span className="text-white font-semibold">Find Actuaries</span>
-          </div>
+          </Link>
           <p className="text-xs">Africa opens every direction.<br />An idea born 2001 · rebuilt 2026.</p>
         </div>
 
