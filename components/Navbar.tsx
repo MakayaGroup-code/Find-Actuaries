@@ -71,15 +71,13 @@ export default function Navbar() {
             <Link href="/events" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
               <Calendar className="w-4 h-4" /> Events
             </Link>
+            <Link href="/mentoring" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
+              <Users2 className="w-4 h-4" /> Mentoring
+            </Link>
             {isLoggedIn && userType === 'actuary' && (
-              <>
-                <Link href="/mentoring" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
-                  <Users2 className="w-4 h-4" /> Mentoring
-                </Link>
-                <Link href="/profile/edit" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
-                  <User className="w-4 h-4" /> My Profile
-                </Link>
-              </>
+              <Link href="/profile/edit" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
+                <User className="w-4 h-4" /> My Profile
+              </Link>
             )}
             {isLoggedIn && userType === 'employer' && (
               <Link href="/employer/dashboard" className="nav-link flex items-center gap-1.5 text-slate-700 hover:text-slate-900">
@@ -145,6 +143,7 @@ export default function Navbar() {
           <Link href="/directory" className="block py-2 text-slate-700">Directory</Link>
           <Link href="/jobs" className="block py-2 text-slate-700">Jobs & Opportunities</Link>
           <Link href="/events" className="block py-2 text-slate-700">Events</Link>
+          <Link href="/mentoring" className="block py-2 text-slate-700">Mentoring</Link>
           <div className="pt-3 border-t flex flex-col gap-2">
             {!isLoggedIn ? (
               <>
@@ -156,17 +155,13 @@ export default function Navbar() {
             ) : (
               <>
                 {userType === 'actuary' && (
-                  <>
-                    <Link href="/mentoring" className="py-1.5">Mentoring</Link>
-                    <Link href="/profile/edit" className="py-1.5">My Profile</Link>
-                  </>
+                  <Link href="/profile/edit" className="py-1.5">My Profile</Link>
                 )}
                 {userType === 'employer' && (
                   <Link href="/employer/dashboard" className="py-1.5">Employer Dashboard</Link>
                 )}
                 <button onClick={toggleLogin} className="text-left py-2 text-red-600">Log out</button>
-              </>
-            )}
+              </>            )}
           </div>
         </div>
       )}
