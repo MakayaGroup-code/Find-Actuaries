@@ -50,14 +50,49 @@ export default function MentoringPage() {
   const [codeAccepted, setCodeAccepted] = useState(false);
   const [mentorResult, setMentorResult] = useState<null | ReturnType<typeof calculateMentorPathway>>(null);
 
-  const submitStudent = () => {
+  // Client no longer talks to Formspree directly — this hits our own API
+  // route first, which is what actually lets BotID check the request
+  // server-side before anything gets forwarded.
+  const SUBMIT_ENDPOINT = '/api/mentoring-submit';
+
+  const submitStudent = async () => {
     if (!dob || !consent) return;
-    setStudentResult(calculateEligibility(dob, subject, degreeClass));
+    const result = calculateEligibility(dob, subject, degreeClass);
+    setStudentResult(result); // Always shown, regardless of network status below.
+    try {
+      await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form: 'mentoring_student_application',
+          fullName, email, country, dateOfBirth: dob,
+          firstDegreeSubject: subject, degreeClass, university,
+          eligibilityResult: result,
+        }),
+      });
+    } catch {
+      // Test-round capture only — a failed notification must never block
+      // the applicant from seeing their real, client-computed result.
+    }
   };
 
-  const submitMentor = () => {
+  const submitMentor = async () => {
     if (!codeAccepted) return;
-    setMentorResult(calculateMentorPathway(mentorCountry, false));
+    const result = calculateMentorPathway(mentorCountry, false);
+    setMentorResult(result);
+    try {
+      await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form: 'mentoring_mentor_application',
+          country: mentorCountry, credentialBody,
+          pathwayResult: result,
+        }),
+      });
+    } catch {
+      // Same as above — notification failure is silent and non-blocking.
+    }
   };
 
   return (
@@ -149,9 +184,11 @@ export default function MentoringPage() {
           <label className="flex items-start gap-3 mb-6 text-sm text-slate-600">
             <input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} className="mt-1" />
             <span>
-              I consent to my data being processed under the applicable data protection law for my
-              country (Nigeria: NDPA 2023 · Kenya: DPA 2019 · Ghana: DPA 2012), including transfer to
-              and processing on infrastructure hosted outside my country.
+              I understand this is a closed test round: what I enter is sent via Formspree (a
+              US-based service) to the person running this test, purely so submissions can be
+              reviewed afterward — not to a production database, and not used for real matching
+              or assignment. The full data protection framework (Nigeria: NDPA 2023 · Kenya: DPA
+              2019 · Ghana: DPA 2012) will apply once real applications are collected.
             </span>
           </label>
 

@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { BotIdClient } from "botid/client";
+
+const protectedRoutes = [
+  { path: '/api/mentoring-submit', method: 'POST' },
+];
 
 export const metadata: Metadata = {
   title: "Find Actuaries | Africa opens every direction",
@@ -18,6 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <BotIdClient protect={protectedRoutes} />
+      </head>
       <body className="bg-slate-50 text-slate-900 antialiased">
         <Navbar />
         <main>{children}</main>

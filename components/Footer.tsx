@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -27,36 +28,45 @@ export default function Footer() {
         <div>
           <div className="font-semibold text-white mb-3">Platform</div>
           <div className="space-y-1.5 text-xs">
-            <div>Member Directory</div>
-            <div>Jobs &amp; Gigs</div>
-            <div>Events &amp; Networking</div>
-            <div>Mentoring</div>
+            <Link href="/directory" className="block hover:text-white">Member Directory</Link>
+            <Link href="/jobs" className="block hover:text-white">Jobs &amp; Gigs</Link>
+            <Link href="/events" className="block hover:text-white">Events &amp; Networking</Link>
+            <Link href="/mentoring" className="block hover:text-white">Mentoring</Link>
           </div>
         </div>
 
         <div>
           <div className="font-semibold text-white mb-3">For Employers</div>
           <div className="space-y-1.5 text-xs">
-            <div>Post a Vacancy</div>
-            <div>Search Talent</div>
-            <div>Corporate Membership</div>
-            <div>Find Consultants</div>
+            <Link href="/jobs" className="block hover:text-white">Post a Vacancy</Link>
+            <Link href="/directory" className="block hover:text-white">Search Talent</Link>
+            <Link href="/employers/membership" className="block hover:text-white">Corporate Membership</Link>
+            <Link href="/employers/consultants" className="block hover:text-white">Find Consultants</Link>
           </div>
         </div>
 
         <div>
           <div className="font-semibold text-white mb-3">Company</div>
           <div className="space-y-1.5 text-xs">
-            <div>About Us</div>
-            <div>Our Story</div>
-            <div>Contact</div>
-            <div>Privacy &amp; Data</div>
+            <Link href="/about" className="block hover:text-white">About Us</Link>
+            <Link href="/our-story" className="block hover:text-white">Our Story</Link>
+            <Link href="/contact" className="block hover:text-white">Contact</Link>
+            <Link href="/privacy" className="block hover:text-white">Privacy &amp; Data</Link>
           </div>
           <div className="mt-6 text-[10px] text-slate-500">
             © {new Date().getFullYear()} Find Actuaries Limited.<br />
             In service of 3E Foundation&apos;s work across Africa
           </div>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-slate-800">
+        <p className="text-[11px] text-slate-500">
+          <strong className="text-slate-400">Test environment.</strong> This is a closed build for
+          authorised testing only — not a live service, and not indexed or linked from
+          findactuaries.com. Nothing entered here is stored; see{' '}
+          <Link href="/privacy" className="underline hover:text-slate-300">Privacy &amp; Data</Link> for detail.
+        </p>
       </div>
     </footer>
   );
